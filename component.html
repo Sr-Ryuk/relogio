@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang='pt-BR'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Card Operacional Motorista</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: transparent;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #121212, rgba(255, 255, 255, 0.05));
+            transform: rotate(45deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .profile-picture {
+            flex-shrink: 0;
+            margin-right: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-picture img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-picture img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .details {
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+
+        .details .name,
+        .details .cpf {
+            margin-bottom: 8px;
+        }
+
+        .details span {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #FFD700; /* Cor dourada para destacar */
+        }
+
+        /* Animação de brilho */
+        @keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 103, 161, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 103, 161, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 103, 161, 0.6);
+    }
+}
+
+        .container {
+            animation: glow 3s infinite alternate;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container driver-card'>
+        <div class='profile-picture'>
+            <img id='driver-image' src='https://cdn-icons-png.flaticon.com/512/3135/3135768.png' alt='Foto do Motorista'>
+        </div>
+        <div class='info driver-info'>
+            <h1 class='title'>MOTORISTA</h1>
+            <div class='details'>
+                <p class='name'>Nome: <span>João da Silva</span></p>
+                <p class='cpf'>CPF: <span>123.456.789-00</span></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Modo claro
+        var fundo_claro = '#FFFFFF';
+        var cor_fonte = '#000000';
+
+        // Modo escuro
+        var fundo_escuro = '#121212';
+        var cor_fonte_escuro = '#FFFFFF';
+
+        function configureColors(backgroundColor, textColor) {
+            document.body.style.backgroundColor = backgroundColor;
+            const driverCards = document.querySelectorAll('.driver-card');
+            driverCards.forEach(card => {
+                card.style.background = backgroundColor === fundo_claro ?
+                    'linear-gradient(145deg, #f0f0f0, #e0e0e0)' :
+                    'linear-gradient(145deg, #1e1e1e, #2c2c2c)';
+                const texts = card.querySelectorAll('.driver-info p, .driver-info .title, .driver-info .details span');
+                texts.forEach(text => {
+                    text.style.color = textColor;
+                });
+            });
+        }
+
+        configureColors(fundo_escuro, cor_fonte_escuro);
+    </script>
+</body>
+
+</html>
